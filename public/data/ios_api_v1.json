@@ -43,6 +43,122 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "User",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "Sign up a User.",
+                    "HTTPMethod": "POST",
+                    "URI": "/users",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "email",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "email of the user"
+                        },
+                        {
+                            "Name": "password",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "email of the user"
+                        },
+                        {
+                            "Name": "facebook_oauth",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "The Facebook Oauth 2.0 token"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Get a user data.",
+                    "HTTPMethod": "GET",
+                    "URI": "/users/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                       {
+                            "Name": "id",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "user id"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Explore",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/recommended",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of spaces returned per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Search public spaces",
+                    "HTTPMethod": "GET",
+                    "URI": "/explore/spaces/search",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                       {
+                            "Name": "term",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "search term"
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                       {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of spaces returned per page."
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
