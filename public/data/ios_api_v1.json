@@ -1,0 +1,48 @@
+{
+    "endpoints": [
+        {
+            "name": "Authentication Token",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "Create an authentication token. Need to pass either the email/password of the user or the Facebook Oauth token.",
+                    "HTTPMethod": "POST",
+                    "URI": "/auth_token",
+                    "RequiresOAuth": "N",
+                    "parameters": [
+                        {
+                            "Name": "email",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "email of the user"
+                        },
+                        {
+                            "Name": "password",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "email of the user"
+                        },
+                        {
+                            "Name": "facebook_oauth",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "The Facebook Oauth 2.0 token"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Log out a user by deleting the associated authentication token",
+                    "HTTPMethod": "DELETE",
+                    "URI": "/auth_token",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                    ]
+                }
+            ]
+        }
+    ]
+}
