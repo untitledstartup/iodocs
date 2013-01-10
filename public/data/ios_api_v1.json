@@ -153,6 +153,36 @@
                 },
                 {
                     "MethodName": "",
+                    "Synopsis": "Create a new space.",
+                    "HTTPMethod": "POST",
+                    "URI": "/spaces",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                       {
+                            "Name": "title",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "The space title."
+                        },
+                        {
+                            "Name": "description",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "is_public",
+                            "Required": "N",
+                            "Default": "true",
+                            "Type": "boolean",
+                            "Description": "Determines if the space is public or private"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
                     "Synopsis": "Get the user spaces",
                     "HTTPMethod": "GET",
                     "URI": "/spaces",
@@ -203,36 +233,6 @@
                             "Description": "number of spaces returned per page."
                         }
                     ]
-                },
-                {
-                    "MethodName": "",
-                    "Synopsis": "Create a new space.",
-                    "HTTPMethod": "POST",
-                    "URI": "/spaces",
-                    "RequiresOAuth": "Y",
-                    "parameters": [
-                       {
-                            "Name": "title",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "string",
-                            "Description": "The space title."
-                        },
-                        {
-                            "Name": "description",
-                            "Required": "N",
-                            "Default": "",
-                            "Type": "string",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "is_public",
-                            "Required": "N",
-                            "Default": "true",
-                            "Type": "boolean",
-                            "Description": "Determines if the space is public or private"
-                        }
-                    ]
                 }
             ]
         },
@@ -268,8 +268,241 @@
                             "Description": "number of spaces returned per page."
                         }
                     ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "POST",
+                    "URI": "/spaces/:id/comments",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "id",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of spaces returned per page."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Space Comments (Chat Messages)",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "Get the list of chat messages for the space.",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:id/comments",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "Number of chat messages per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Create a new chat message.",
+                    "HTTPMethod": "POST",
+                    "URI": "/spaces/:id/comments",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id."
+                        },
+                        {
+                            "Name": "text",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Text message in plain text."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Posts",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:space_id/posts",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of posts returned per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:space_id/posts:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "post id"
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of posts returned per page."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Post Comments",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:space_id/posts/:post_id/comments",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id."
+                        },
+                        {
+                            "Name": "post_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Post id."
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": "Page number to return."
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "Number of comments returned per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:space_id/posts/:post_id/comments/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id."
+                        },
+                        {
+                            "Name": "post_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Post id."
+                        },
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Comment id."
+                        }
+                    ]
                 }
             ]
         }
+
     ]
 }
