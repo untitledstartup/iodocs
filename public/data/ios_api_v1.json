@@ -1,7 +1,7 @@
 {
     "endpoints": [
         {
-            "name": "Authentication Token",
+            "name": "Tokens",
             "methods": [
                 {
                     "MethodName": "",
@@ -45,7 +45,7 @@
             ]
         },
         {
-            "name": "User",
+            "name": "Users",
             "methods": [
                 {
                     "MethodName": "",
@@ -96,7 +96,7 @@
             ]
         },
         {
-            "name": "Explore",
+            "name": "Spaces",
             "methods": [
                 {
                     "MethodName": "",
@@ -123,7 +123,7 @@
                 },
                 {
                     "MethodName": "",
-                    "Synopsis": "Search public spaces",
+                    "Synopsis": "Search public spaces.",
                     "HTTPMethod": "GET",
                     "URI": "/explore/spaces/search",
                     "RequiresOAuth": "N",
@@ -142,7 +142,118 @@
                             "Type": "integer",
                             "Description": ""
                         },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of spaces returned per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Get the user spaces",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of spaces returned per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Get the space data.",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "space id"
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of spaces returned per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Create a new space.",
+                    "HTTPMethod": "POST",
+                    "URI": "/spaces",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                       {
+                            "Name": "title",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "The space title."
+                        },
+                        {
+                            "Name": "description",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "is_public",
+                            "Required": "N",
+                            "Default": "true",
+                            "Type": "boolean",
+                            "Description": "Determines if the space is public or private"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Space Activities",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:id/activities",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "id",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
                             "Name": "page",
                             "Required": "N",
                             "Default": "1",
