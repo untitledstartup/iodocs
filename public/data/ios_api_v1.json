@@ -1,7 +1,58 @@
 {
     "endpoints": [
         {
-            "name": "Tokens",
+            "name": "Assets",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "Upload a file to the server. The returned assets id needs to be sent with the Post form.",
+                    "HTTPMethod": "POST",
+                    "URI": "/assets",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "user_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "User id of the user that is uploading the asset."
+                        },
+                        {
+                            "Name": "file_name",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Filename of the assets."
+                        },
+                        {
+                            "Name": "file_data",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "User id of the user that is uploading the asset."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Delete an assets.",
+                    "HTTPMethod": "DELETE",
+                    "URI": "/assets/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Id of the Asset to be deleted."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Authentication Token",
             "methods": [
                 {
                     "MethodName": "",
@@ -45,62 +96,250 @@
             ]
         },
         {
-            "name": "Users",
+            "name": "Cheer",
             "methods": [
                 {
                     "MethodName": "",
-                    "Synopsis": "Sign up a User.",
+                    "Synopsis": "Cheer a post or a post comment.",
                     "HTTPMethod": "POST",
-                    "URI": "/users",
-                    "RequiresOAuth": "N",
-                    "parameters": [
-                        {
-                            "Name": "email",
-                            "Required": "N",
-                            "Default": "",
-                            "Type": "string",
-                            "Description": "email of the user"
-                        },
-                        {
-                            "Name": "password",
-                            "Required": "N",
-                            "Default": "",
-                            "Type": "string",
-                            "Description": "email of the user"
-                        },
-                        {
-                            "Name": "facebook_oauth",
-                            "Required": "N",
-                            "Default": "",
-                            "Type": "string",
-                            "Description": "The Facebook Oauth 2.0 token"
-                        }
-                    ]
-                },
-                {
-                    "MethodName": "",
-                    "Synopsis": "Get a user data.",
-                    "HTTPMethod": "GET",
-                    "URI": "/users/:id",
+                    "URI": "/cheers",
                     "RequiresOAuth": "Y",
                     "parameters": [
-                       {
-                            "Name": "id",
-                            "Required": "N",
+                        {
+                            "Name": "user_id",
+                            "Required": "Y",
                             "Default": "",
                             "Type": "integer",
-                            "Description": "user id"
+                            "Description": "User id of the user that is cheering."
+                        },
+                        {
+                            "Name": "cheerable_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Id of the object the user wants to cheer."
+                        },
+                        {
+                            "Name": "cheerable_type",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "enumerated",
+                            "EnumeratedList":["post", "comment"],
+                            "Description": "Type of the object the user wants to cheer."
                         }
                     ]
                 }
             ]
         },
         {
-            "name": "Spaces",
+            "name": "Invite",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "Creates a list of invites given a list of contacts. Contacts can be Mightybell users or external (Facebook, Gmail, Yahoo! Mail",
+                    "HTTPMethod": "POST",
+                    "URI": "/invites",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "user_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "User id of the user thats sending the invites."
+                        },
+
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id of the space the contacts are invited to."
+                        },
+                        {
+                            "Name": "message",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Filename of the assets."
+                        },
+                        {
+                            "Name": "contacts",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "array",
+                            "Description": "Array of contact objects { :user_id, :name, :email }"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Allows the user to accept an invitation. The user will need to sign in/sign up.",
+                    "HTTPMethod": "POST",
+                    "URI": "/invites/:token/accept",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "token",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Unique token from the redirect link."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Post",
             "methods": [
                 {
                     "MethodName": "",
                     "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:space_id/posts",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of posts returned per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:space_id/posts:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "post id"
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "number of posts returned per page."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Post Comment",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:space_id/posts/:post_id/comments",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id."
+                        },
+                        {
+                            "Name": "post_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Post id."
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "N",
+                            "Default": "1",
+                            "Type": "integer",
+                            "Description": "Page number to return."
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "N",
+                            "Default": "25",
+                            "Type": "integer",
+                            "Description": "Number of comments returned per page."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/:space_id/posts/:post_id/comments/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id."
+                        },
+                        {
+                            "Name": "post_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Post id."
+                        },
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Comment id."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Space",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "Returns a list of recommended spaces. When the user is signed in the returned spaces are tailored to the user.",
                     "HTTPMethod": "GET",
                     "URI": "/spaces/recommended",
                     "RequiresOAuth": "N",
@@ -237,11 +476,11 @@
             ]
         },
         {
-            "name": "Space Activities",
+            "name": "Space Activity",
             "methods": [
                 {
                     "MethodName": "",
-                    "Synopsis": "",
+                    "Synopsis": "Returns the space activities sorted by the most recent.",
                     "HTTPMethod": "GET",
                     "URI": "/spaces/:id/activities",
                     "RequiresOAuth": "Y",
@@ -250,36 +489,7 @@
                             "Name": "id",
                             "Required": "N",
                             "Default": "",
-                            "Type": "integer",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "page",
-                            "Required": "N",
-                            "Default": "1",
-                            "Type": "integer",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "per_page",
-                            "Required": "N",
-                            "Default": "25",
-                            "Type": "integer",
-                            "Description": "number of spaces returned per page."
-                        }
-                    ]
-                },
-                {
-                    "MethodName": "",
-                    "Synopsis": "",
-                    "HTTPMethod": "POST",
-                    "URI": "/spaces/:id/comments",
-                    "RequiresOAuth": "Y",
-                    "parameters": [
-                        {
-                            "Name": "id",
-                            "Required": "N",
-                            "Default": "",
+                            "Location": "inline",
                             "Type": "integer",
                             "Description": ""
                         },
@@ -302,7 +512,7 @@
             ]
         },
         {
-            "name": "Space Comments (Chat Messages)",
+            "name": "Space Comment (Chat Message)",
             "methods": [
                 {
                     "MethodName": "",
@@ -360,58 +570,22 @@
             ]
         },
         {
-            "name": "Posts",
+            "name": "Space Member",
             "methods": [
                 {
                     "MethodName": "",
-                    "Synopsis": "",
+                    "Synopsis": "Returns the list of the space members.",
                     "HTTPMethod": "GET",
-                    "URI": "/spaces/:space_id/posts",
+                    "URI": "/spaces/:id/people",
                     "RequiresOAuth": "Y",
                     "parameters": [
-                        {
-                            "Name": "space_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "page",
-                            "Required": "N",
-                            "Default": "1",
-                            "Type": "integer",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "per_page",
-                            "Required": "N",
-                            "Default": "25",
-                            "Type": "integer",
-                            "Description": "number of posts returned per page."
-                        }
-                    ]
-                },
-                {
-                    "MethodName": "",
-                    "Synopsis": "",
-                    "HTTPMethod": "GET",
-                    "URI": "/spaces/:space_id/posts:id",
-                    "RequiresOAuth": "Y",
-                    "parameters": [
-                        {
-                            "Name": "space_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": ""
-                        },
                         {
                             "Name": "id",
-                            "Required": "Y",
+                            "Required": "N",
                             "Default": "",
+                            "Location": "inline",
                             "Type": "integer",
-                            "Description": "post id"
+                            "Description": ""
                         },
                         {
                             "Name": "page",
@@ -425,84 +599,62 @@
                             "Required": "N",
                             "Default": "25",
                             "Type": "integer",
-                            "Description": "number of posts returned per page."
+                            "Description": "number of spaces returned per page."
                         }
                     ]
                 }
             ]
         },
         {
-            "name": "Post Comments",
+            "name": "User",
             "methods": [
                 {
                     "MethodName": "",
-                    "Synopsis": "",
-                    "HTTPMethod": "GET",
-                    "URI": "/spaces/:space_id/posts/:post_id/comments",
-                    "RequiresOAuth": "Y",
+                    "Synopsis": "Sign up a User.",
+                    "HTTPMethod": "POST",
+                    "URI": "/users",
+                    "RequiresOAuth": "N",
                     "parameters": [
                         {
-                            "Name": "space_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "Space id."
-                        },
-                        {
-                            "Name": "post_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "Post id."
-                        },
-                        {
-                            "Name": "page",
+                            "Name": "email",
                             "Required": "N",
-                            "Default": "1",
-                            "Type": "integer",
-                            "Description": "Page number to return."
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "email of the user"
                         },
                         {
-                            "Name": "per_page",
+                            "Name": "password",
                             "Required": "N",
-                            "Default": "25",
-                            "Type": "integer",
-                            "Description": "Number of comments returned per page."
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "email of the user"
+                        },
+                        {
+                            "Name": "facebook_oauth",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "The Facebook Oauth 2.0 token"
                         }
                     ]
                 },
                 {
                     "MethodName": "",
-                    "Synopsis": "",
+                    "Synopsis": "Get a user data.",
                     "HTTPMethod": "GET",
-                    "URI": "/spaces/:space_id/posts/:post_id/comments/:id",
+                    "URI": "/users/:id",
                     "RequiresOAuth": "Y",
                     "parameters": [
-                        {
-                            "Name": "space_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "Space id."
-                        },
-                        {
-                            "Name": "post_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "Post id."
-                        },
-                        {
+                       {
                             "Name": "id",
-                            "Required": "Y",
+                            "Required": "N",
                             "Default": "",
                             "Type": "integer",
-                            "Description": "Comment id."
+                            "Description": "user id"
                         }
                     ]
                 }
             ]
         }
-
     ]
 }
