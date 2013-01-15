@@ -205,21 +205,21 @@
                             "Required": "Y",
                             "Default": "",
                             "Type": "integer",
-                            "Description": ""
+                            "Description": "Space id of the space that contains the posts."
                         },
                         {
                             "Name": "page",
                             "Required": "N",
                             "Default": "1",
                             "Type": "integer",
-                            "Description": ""
+                            "Description": "Page number."
                         },
                         {
                             "Name": "per_page",
                             "Required": "N",
                             "Default": "25",
                             "Type": "integer",
-                            "Description": "number of posts returned per page."
+                            "Description": "Number of posts per page."
                         }
                     ]
                 },
@@ -227,7 +227,7 @@
                     "MethodName": "",
                     "Synopsis": "",
                     "HTTPMethod": "GET",
-                    "URI": "/spaces/:space_id/posts:id",
+                    "URI": "/spaces/:space_id/posts/:id",
                     "RequiresOAuth": "Y",
                     "parameters": [
                         {
@@ -235,28 +235,14 @@
                             "Required": "Y",
                             "Default": "",
                             "Type": "integer",
-                            "Description": ""
+                            "Description": "Space id of the space that contains the posts."
                         },
                         {
                             "Name": "id",
                             "Required": "Y",
                             "Default": "",
                             "Type": "integer",
-                            "Description": "post id"
-                        },
-                        {
-                            "Name": "page",
-                            "Required": "N",
-                            "Default": "1",
-                            "Type": "integer",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "per_page",
-                            "Required": "N",
-                            "Default": "25",
-                            "Type": "integer",
-                            "Description": "number of posts returned per page."
+                            "Description": "Post id of the post."
                         }
                     ]
                 }
@@ -445,7 +431,7 @@
                 },
                 {
                     "MethodName": "",
-                    "Synopsis": "Get the space data.",
+                    "Synopsis": "Get the space resource.",
                     "HTTPMethod": "GET",
                     "URI": "/spaces/:id",
                     "RequiresOAuth": "Y",
@@ -456,20 +442,6 @@
                             "Default": "",
                             "Type": "integer",
                             "Description": "space id"
-                        },
-                        {
-                            "Name": "page",
-                            "Required": "N",
-                            "Default": "1",
-                            "Type": "integer",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "per_page",
-                            "Required": "N",
-                            "Default": "25",
-                            "Type": "integer",
-                            "Description": "number of spaces returned per page."
                         }
                     ]
                 }
@@ -616,18 +588,25 @@
                     "RequiresOAuth": "N",
                     "parameters": [
                         {
+                            "Name": "name",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Full name of the new user."
+                        },
+                        {
                             "Name": "email",
                             "Required": "N",
                             "Default": "",
                             "Type": "string",
-                            "Description": "email of the user"
+                            "Description": "Valid email of the new user."
                         },
                         {
                             "Name": "password",
                             "Required": "N",
                             "Default": "",
                             "Type": "string",
-                            "Description": "email of the user"
+                            "Description": "Valid password for the new user."
                         },
                         {
                             "Name": "facebook_oauth",
