@@ -88,9 +88,15 @@
                     "MethodName": "",
                     "Synopsis": "Log out a user by deleting the associated authentication token",
                     "HTTPMethod": "DELETE",
-                    "URI": "/auth_token",
-                    "RequiresOAuth": "Y",
+                    "URI": "/auth_token/:auth_token",
                     "parameters": [
+                        {
+                            "Name": "auth_token",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "current user's auth token"
+                        }
                     ]
                 }
             ]
