@@ -251,6 +251,43 @@
                             "Description": "Post id of the post."
                         }
                     ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "",
+                    "HTTPMethod": "POST",
+                    "URI": "/spaces/:space_id/posts",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id of the space that contains the posts."
+                        },
+                        {
+                            "Name": "title",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Title of the post."
+                        },
+                        {
+                            "Name": "body",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Body of the post."
+                        },
+                        {
+                            "Name": "asset_id",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Image/file attachment id"
+                        }
+                    ]
                 }
             ]
         },
