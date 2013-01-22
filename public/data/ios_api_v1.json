@@ -11,25 +11,11 @@
                     "RequiresOAuth": "Y",
                     "parameters": [
                         {
-                            "Name": "user_id",
+                            "Name": "file",
                             "Required": "Y",
                             "Default": "",
                             "Type": "integer",
-                            "Description": "User id of the user that is uploading the asset."
-                        },
-                        {
-                            "Name": "file_name",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "string",
-                            "Description": "Filename of the assets."
-                        },
-                        {
-                            "Name": "file_data",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "User id of the user that is uploading the asset."
+                            "Description": "File binary data (we should be able to get filename out of this)"
                         }
                     ]
                 },
