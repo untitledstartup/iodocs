@@ -16,6 +16,13 @@
                             "Default": "",
                             "Type": "integer",
                             "Description": "File binary data (we should be able to get filename out of this)"
+                        },
+                        {
+                            "Name": "image_style",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Must be either 'post' or 'avatar'"
                         }
                     ]
                 },
@@ -271,7 +278,7 @@
                             "Required": "N",
                             "Default": "",
                             "Type": "integer",
-                            "Description": "Image/file attachment id"
+                            "Description": "Image/file attachment id, must have image_style 'post'"
                         }
                     ]
                 }
@@ -425,6 +432,13 @@
                             "Default": "",
                             "Type": "string",
                             "Description": ""
+                        },
+                        {
+                            "Name": "asset_id",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "ID of the space image that must have image_style of 'avatar'"
                         },
                         {
                             "Name": "is_public",
