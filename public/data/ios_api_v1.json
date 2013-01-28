@@ -95,42 +95,6 @@
             ]
         },
         {
-            "name": "Cheer",
-            "methods": [
-                {
-                    "MethodName": "",
-                    "Synopsis": "Cheer a post or a post comment.",
-                    "HTTPMethod": "POST",
-                    "URI": "/cheers",
-                    "RequiresOAuth": "Y",
-                    "parameters": [
-                        {
-                            "Name": "user_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "User id of the user that is cheering."
-                        },
-                        {
-                            "Name": "cheerable_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "Id of the object the user wants to cheer."
-                        },
-                        {
-                            "Name": "cheerable_type",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "enumerated",
-                            "EnumeratedList":["post", "comment"],
-                            "Description": "Type of the object the user wants to cheer."
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "name": "Invite",
             "methods": [
                 {
@@ -281,6 +245,29 @@
                             "Description": "Image/file attachment id, must have image_style 'post'"
                         }
                     ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Cheer a post. A post can only be cheered once.",
+                    "HTTPMethod": "POST",
+                    "URI": "/spaces/:space_id/posts/:id/cheer",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space_id of the post that the user wants to cheer."
+                        },
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Id of the post the user wants to cheer."
+                        }
+                    ]
                 }
             ]
         },
@@ -384,31 +371,26 @@
                 },
                 {
                     "MethodName": "",
-                    "Synopsis": "Search public spaces.",
+                    "Synopsis": "Searches WITHIN a space, looking at posts, comments, and users.",
                     "HTTPMethod": "GET",
-                    "URI": "/explore/spaces/search",
-                    "RequiresOAuth": "N",
+                    "URI": "/spaces/:id/search",
+                    "RequiresOAuth": "Y",
                     "parameters": [
-                       {
-                            "Name": "term",
+                        {
+                            "Name": "id",
                             "Required": "Y",
                             "Default": "",
-                            "Type": "string",
-                            "Description": "search term"
-                        },
-                        {
-                            "Name": "page",
-                            "Required": "N",
-                            "Default": "1",
+                            "Location": "inline",
                             "Type": "integer",
                             "Description": ""
                         },
                         {
-                            "Name": "per_page",
-                            "Required": "N",
-                            "Default": "25",
-                            "Type": "integer",
-                            "Description": "number of spaces returned per page."
+                            "Name": "term",
+                            "Required": "Y",
+                            "Default": "",
+                            "Location": "inline",
+                            "Type": "string",
+                            "Description": "The term to search for, cannot be blank, spaces are allowed"
                         }
                     ]
                 },
@@ -531,36 +513,6 @@
             "methods": [
                 {
                     "MethodName": "",
-                    "Synopsis": "Get the list of chat messages for the space.",
-                    "HTTPMethod": "GET",
-                    "URI": "/spaces/:id/comments",
-                    "RequiresOAuth": "Y",
-                    "parameters": [
-                        {
-                            "Name": "id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "page",
-                            "Required": "N",
-                            "Default": "1",
-                            "Type": "integer",
-                            "Description": ""
-                        },
-                        {
-                            "Name": "per_page",
-                            "Required": "N",
-                            "Default": "25",
-                            "Type": "integer",
-                            "Description": "Number of chat messages per page."
-                        }
-                    ]
-                },
-                {
-                    "MethodName": "",
                     "Synopsis": "Create a new chat message.",
                     "HTTPMethod": "POST",
                     "URI": "/spaces/:id/comments",
@@ -585,13 +537,13 @@
             ]
         },
         {
-            "name": "Space Member",
+            "name": "Space Members",
             "methods": [
                 {
                     "MethodName": "",
                     "Synopsis": "Returns the list of the space members.",
                     "HTTPMethod": "GET",
-                    "URI": "/spaces/:id/people",
+                    "URI": "/spaces/:id/members",
                     "RequiresOAuth": "Y",
                     "parameters": [
                         {
@@ -618,6 +570,12 @@
                         }
                     ]
                 }
+            ]
+        },
+        {
+            "name": "Space Search",
+            "methods": [
+
             ]
         },
         {
