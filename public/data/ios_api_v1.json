@@ -99,19 +99,11 @@
             "methods": [
                 {
                     "MethodName": "",
-                    "Synopsis": "Creates a list of invites given a list of contacts. Contacts can be Mightybell users or external (Facebook, Gmail, Yahoo! Mail",
+                    "Synopsis": "Creates and sends invites given a list of emails (eventually facebook_ids too).",
                     "HTTPMethod": "POST",
                     "URI": "/invites",
                     "RequiresOAuth": "Y",
                     "parameters": [
-                        {
-                            "Name": "user_id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "User id of the user thats sending the invites."
-                        },
-
                         {
                             "Name": "space_id",
                             "Required": "Y",
@@ -120,18 +112,11 @@
                             "Description": "Space id of the space the contacts are invited to."
                         },
                         {
-                            "Name": "message",
-                            "Required": "N",
-                            "Default": "",
-                            "Type": "string",
-                            "Description": "Filename of the assets."
-                        },
-                        {
-                            "Name": "contacts",
+                            "Name": "invite",
                             "Required": "Y",
                             "Default": "",
                             "Type": "array",
-                            "Description": "Array of contact objects { :user_id, :name, :email }"
+                            "Description": "invite object { \"emails\": \"<email-1>, <email-2>, <email-n>\" , \"message\": <string>, \"channel\": \"email_manual\"}"
                         }
                     ]
                 },
