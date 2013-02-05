@@ -574,6 +574,27 @@
                     "RequiresOAuth": "N",
                     "parameters": [
                         {
+                            "Name": "guest",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Type is BOOLEAN; blank or FALSE unless user is a guest user without an account."
+                        },
+                        {
+                            "Name": "app_key",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Required if creating a guest user. The application key that is baked into the app."
+                        },
+                        {
+                            "Name": "guest_hash",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Required if creating a guest user. MD5 hash of '<full_url>&app_secret=SDFGSDFGTEDAFSVGDF'. "
+                        },
+                        {
                             "Name": "name",
                             "Required": "N",
                             "Default": "",
