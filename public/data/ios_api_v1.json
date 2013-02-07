@@ -81,7 +81,7 @@
                             "Default": "",
                             "Type": "string",
                             "Description": "REQUIRED If a guest user decides to log in to an existing account. Include the guest_id param to merge the guest user's creations into the existing user."
-                        }
+                        },
                         {
                             "Name": "auth_token",
                             "Required": "N",
