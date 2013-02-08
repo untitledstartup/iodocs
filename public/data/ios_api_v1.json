@@ -115,7 +115,7 @@
                     "MethodName": "",
                     "Synopsis": "Creates and sends invites given a list of emails (eventually facebook_ids too).",
                     "HTTPMethod": "POST",
-                    "URI": "/invites",
+                    "URI": "/spaces/:space_id/invites",
                     "RequiresOAuth": "Y",
                     "parameters": [
                         {
@@ -137,16 +137,30 @@
                 {
                     "MethodName": "",
                     "Synopsis": "Allows the user to accept an invitation. The user will need to sign in/sign up.",
-                    "HTTPMethod": "POST",
-                    "URI": "/invites/:token/accept",
+                    "HTTPMethod": "PUT",
+                    "URI": "spaces/:space_id/invites/:id/accept",
                     "RequiresOAuth": "Y",
                     "parameters": [
                         {
-                            "Name": "token",
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id of the space the contacts are invited to."
+                        },
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Invite id which the server responds with from the invite email link."
+                        },
+                        {
+                            "Name": "auth_token",
                             "Required": "Y",
                             "Default": "",
                             "Type": "string",
-                            "Description": "Unique token from the redirect link."
+                            "Description": "auth_token from the redirect link."
                         }
                     ]
                 }
