@@ -446,6 +446,50 @@
                 },
                 {
                     "MethodName": "",
+                    "Synopsis": "Update an existing space.",
+                    "HTTPMethod": "PUT",
+                    "URI": "/spaces/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                       {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "int",
+                            "Description": "The space id."
+                        },
+                       {
+                            "Name": "title",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "The space title."
+                        },
+                        {
+                            "Name": "description",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": ""
+                        },
+                        {
+                            "Name": "asset_id",
+                            "Required": "N",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "ID of the space image that must have image_style of 'avatar'"
+                        },
+                        {
+                            "Name": "is_public",
+                            "Required": "N",
+                            "Default": "true",
+                            "Type": "boolean",
+                            "Description": "Determines if the space is public or private"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
                     "Synopsis": "Get the user spaces",
                     "HTTPMethod": "GET",
                     "URI": "/spaces",
