@@ -409,6 +409,23 @@
                 },
                 {
                     "MethodName": "",
+                    "Synopsis": "Searches ACROSS all spaces, looking at space titles and descriptions. Returns a list of search results, each result has a 'space' hash which contains the spaces#thin_show data.",
+                    "HTTPMethod": "GET",
+                    "URI": "/spaces/public_search",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "term",
+                            "Required": "Y",
+                            "Default": "",
+                            "Location": "inline",
+                            "Type": "string",
+                            "Description": "The term to search for, cannot be blank, spaces are allowed"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
                     "Synopsis": "Create a new space.",
                     "HTTPMethod": "POST",
                     "URI": "/spaces",
@@ -441,6 +458,23 @@
                             "Default": "true",
                             "Type": "boolean",
                             "Description": "Determines if the space is public or private"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Fork an existing space. Responds with the new clone of a space.",
+                    "HTTPMethod": "POST",
+                    "URI": "/spaces/:id/fork",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Location": "inline",
+                            "Type": "integer",
+                            "Description": ""
                         }
                     ]
                 },
