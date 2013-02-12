@@ -421,6 +421,22 @@
                             "Location": "inline",
                             "Type": "string",
                             "Description": "The term to search for, cannot be blank, spaces are allowed"
+                        },
+                        {
+                            "Name": "page",
+                            "Required": "Y",
+                            "Default": "",
+                            "Location": "inline",
+                            "Type": "integer",
+                            "Description": "The page number"
+                        },
+                        {
+                            "Name": "per_page",
+                            "Required": "Y",
+                            "Default": "",
+                            "Location": "inline",
+                            "Type": "integer",
+                            "Description": "The number of items per page"
                         }
                     ]
                 },
