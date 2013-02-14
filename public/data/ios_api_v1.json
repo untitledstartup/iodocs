@@ -1,6 +1,50 @@
 {
     "endpoints": [
         {
+            "name": "APNS creation",
+            "methods": [
+                {
+                    "MethodName": "",
+                    "Synopsis": "Upload a file to the server. The returned assets id needs to be sent with the Post form.",
+                    "HTTPMethod": "POST",
+                    "URI": "/apns_token",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "auth_token",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "auth_token must be included so we can associate the apns_token to a user"
+                        },
+                        {
+                            "Name": "apns_token",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "string",
+                            "Description": "Allows us to send notifications to the app."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Delete an assets.",
+                    "HTTPMethod": "DELETE",
+                    "URI": "/assets/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Id of the Asset to be deleted."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Assets",
             "methods": [
                 {
@@ -616,34 +660,6 @@
             ]
         },
         {
-            "name": "Space Comment (Chat Message)",
-            "methods": [
-                {
-                    "MethodName": "",
-                    "Synopsis": "Create a new chat message.",
-                    "HTTPMethod": "POST",
-                    "URI": "/spaces/:id/comments",
-                    "RequiresOAuth": "Y",
-                    "parameters": [
-                        {
-                            "Name": "id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "Space id."
-                        },
-                        {
-                            "Name": "text",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "string",
-                            "Description": "Text message in plain text."
-                        }
-                    ]
-                }
-            ]
-        },
-        {
             "name": "Space Members",
             "methods": [
                 {
@@ -677,12 +693,6 @@
                         }
                     ]
                 }
-            ]
-        },
-        {
-            "name": "Space Search",
-            "methods": [
-
             ]
         },
         {
