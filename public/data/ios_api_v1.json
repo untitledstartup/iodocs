@@ -25,22 +25,6 @@
                             "Description": "Allows us to send notifications to the app."
                         }
                     ]
-                },
-                {
-                    "MethodName": "",
-                    "Synopsis": "Delete an assets.",
-                    "HTTPMethod": "DELETE",
-                    "URI": "/assets/:id",
-                    "RequiresOAuth": "Y",
-                    "parameters": [
-                        {
-                            "Name": "id",
-                            "Required": "Y",
-                            "Default": "",
-                            "Type": "integer",
-                            "Description": "Id of the Asset to be deleted."
-                        }
-                    ]
                 }
             ]
         },
