@@ -239,7 +239,30 @@
                             "Required": "Y",
                             "Default": "",
                             "Type": "integer",
-                            "Description": "Space id of the space that contains the posts."
+                            "Description": "Space id of the space that contains the post."
+                        },
+                        {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Post id of the post."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Delete the post (performable by hosts or creators of the post).",
+                    "HTTPMethod": "DELETE",
+                    "URI": "/spaces/:space_id/posts/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                        {
+                            "Name": "space_id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "Space id of the space that contains the post."
                         },
                         {
                             "Name": "id",
@@ -593,6 +616,22 @@
                     "MethodName": "",
                     "Synopsis": "Get the space resource.",
                     "HTTPMethod": "GET",
+                    "URI": "/spaces/:id",
+                    "RequiresOAuth": "Y",
+                    "parameters": [
+                       {
+                            "Name": "id",
+                            "Required": "Y",
+                            "Default": "",
+                            "Type": "integer",
+                            "Description": "space id"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "",
+                    "Synopsis": "Delete the space (performable by hosts).",
+                    "HTTPMethod": "DELETE",
                     "URI": "/spaces/:id",
                     "RequiresOAuth": "Y",
                     "parameters": [
