@@ -2,7 +2,7 @@
     "ios_api_v1": {
         "name": "IOS API v1",
         "protocol": "https",
-        "baseURL": "staging2.mightybell.com",
+        "baseURL": "www.mightybell.com",
         "publicPath": "/api/mobile/v1",
         "auth": "key",
         "keyParam": "auth_token",
