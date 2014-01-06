@@ -1,0 +1,323 @@
+{
+  "endpoints": [
+    {
+      "name": "Registration",
+      "methods": [
+        {
+          "MethodName": "Create",
+          "Synopsis": "Create a new user or return an existing user if the given email is already taken. If a new user (200), respoonse will include an auth_token to log that user into Mightybell. Sending a user to Mightybell with the query param uat=, will automatically log the user in if the auth_token is valid. e.g. https://staging3.mightybell.com/spaces/64811?uat=3va8hdhs969. If an existing (409), response will return the user's data.",
+          "HTTPMethod": "POST",
+          "URI": "/registrations",
+          "RequiresOAuth": "Y",
+          "parameters": [
+            {
+              "Name": "email",
+              "Required": "Y",
+              "Default": "",
+              "Type": "string",
+              "Description": "e.g. hello@mightybell.com"
+            },
+            {
+              "Name": "first_name",
+              "Required": "Y",
+              "Default": "",
+              "Type": "string",
+              "Description": ""
+            },
+            {
+              "Name": "last_name",
+              "Required": "Y",
+              "Default": "",
+              "Type": "string",
+              "Description": ""
+            },
+            {
+              "Name": "location",
+              "Required": "N",
+              "Default": "",
+              "Type": "string",
+              "Description": "e.g. Palo Alto, CA"
+            },
+            {
+              "Name": "short_bio",
+              "Required": "N",
+              "Default": "",
+              "Type": "string",
+              "Description": "Max length 160 characters."
+            },
+            {
+              "Name": "school",
+              "Required": "N",
+              "Default": "",
+              "Type": "string",
+              "Description": "Name of college or university."
+            },
+            {
+              "Name": "school_major",
+              "Required": "N",
+              "Default": "",
+              "Type": "string",
+              "Description": "Name of major in college or university."
+            },
+            {
+              "Name": "school_degree",
+              "Required": "N",
+              "Default": "",
+              "Type": "enumerated",
+              "EnumeratedList": [
+                "Undergraduate",
+                "MBA",
+                "JD",
+                "MFA",
+                "MD",
+                "PhD",
+                "Other"
+              ],
+              "Description": ""
+            },
+            {
+              "Name": "school_graduation_year",
+              "Required": "N",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 2011"
+            },
+            {
+              "Name": "fb_profile_url",
+              "Required": "N",
+              "Default": "",
+              "Type": "string",
+              "Description": "Fully qualified Facebook URL. e.g. http://facebook/mightybell"
+            },
+            {
+              "Name": "linkedin_profile_url",
+              "Required": "N",
+              "Default": "",
+              "Type": "string",
+              "Description": "Fully qualified LinkedIn URL. e.g. http://www.linkedin.com/in/mightybell"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Community",
+      "methods": [
+        {
+          "MethodName": "Index",
+          "Synopsis": "Get list of communities.",
+          "HTTPMethod": "GET",
+          "URI": "/communities",
+          "RequiresOAuth": "Y",
+          "parameters": [
+            {
+              "Name": "page",
+              "Required": "N",
+              "Default": "1",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "per_page",
+              "Required": "N",
+              "Default": "10",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "sort_by",
+              "Required": "N",
+              "Default": "",
+              "Type": "enumerated",
+              "EnumeratedList": [
+                "title",
+                "space_count",
+                "member_count",
+                "created_at"
+              ],
+              "Description": "What to sort results by."
+            },
+            {
+              "Name": "parent_id",
+              "Required": "N",
+              "Default": "",
+              "Type": "integer",
+              "Description": "Only look at subcommunities of the give community id."
+            },
+            {
+              "Name": "is_campus",
+              "Required": "N",
+              "Default": "false",
+              "Type": "enumerated",
+              "EnumeratedList": [
+                "true",
+                "false"
+              ],
+              "Description": "Filter by communities marked as campus."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Community Membership",
+      "methods": [
+        {
+          "MethodName": "Create",
+          "Synopsis": "Join a user to a community with the given role. If the role is 'host' the user will be added to the Editors Room of the Community. If new membership (200), if existing membership (409), both return membership data",
+          "HTTPMethod": "POST",
+          "URI": "/community_memberships",
+          "RequiresOAuth": "Y",
+          "parameters": [
+            {
+              "Name": "community_id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "user_id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "role",
+              "Required": "Y",
+              "Default": "contributor",
+              "Type": "enumerated",
+              "EnumeratedList": [
+                "contributor",
+                "host"
+              ],
+              "Description": "The role of the user in the community."
+            }
+          ]
+        },
+        {
+          "MethodName": "Update",
+          "Synopsis": "Update a membership's role.",
+          "HTTPMethod": "PUT",
+          "URI": "/community_memberships/:id",
+          "RequiresOAuth": "Y",
+          "parameters": [
+            {
+              "Name": "id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "community_id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "user_id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "role",
+              "Required": "Y",
+              "Default": "",
+              "Type": "enumerated",
+              "EnumeratedList": [
+                "contributor",
+                "host"
+              ],
+              "Description": "The new role of the user in the community."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Space Membership",
+      "methods": [
+        {
+          "MethodName": "Create",
+          "Synopsis": "Join a user to a space with the given role. If the space is an Editors Room user will always be a host and will auto join the community as a host. If new membership (200), if existing membership (409), both return membership data",
+          "HTTPMethod": "POST",
+          "URI": "/space_memberships",
+          "RequiresOAuth": "Y",
+          "parameters": [
+            {
+              "Name": "space_id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "user_id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "role",
+              "Required": "Y",
+              "Default": "contributor",
+              "Type": "enumerated",
+              "EnumeratedList": [
+                "contributor",
+                "host"
+              ],
+              "Description": "The role of the user in the space."
+            }
+          ]
+        },
+        {
+          "MethodName": "Update",
+          "Synopsis": "Update a membership's role.",
+          "HTTPMethod": "PUT",
+          "URI": "/space_memberships/:id",
+          "RequiresOAuth": "Y",
+          "parameters": [
+            {
+              "Name": "id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "space_id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "user_id",
+              "Required": "Y",
+              "Default": "",
+              "Type": "integer",
+              "Description": "e.g. 123"
+            },
+            {
+              "Name": "role",
+              "Required": "Y",
+              "Default": "",
+              "Type": "enumerated",
+              "EnumeratedList": [
+                "contributor",
+                "host"
+              ],
+              "Description": "The new role of the user in the space."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

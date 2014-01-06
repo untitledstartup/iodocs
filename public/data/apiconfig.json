@@ -9,5 +9,16 @@
         "headers" : {
             "Accept": "application/json"
         }
+    },
+     "rest_api_v1": {
+        "name": "REST API v1",
+        "protocol": "https",
+        "baseURL": "staging2.mightybell.com",
+        "publicPath": "/api/rest/v1",
+        "auth": "key",
+        "keyParam": "client_id",
+        "headers" : {
+            "Accept": "application/json"
+        }
     }
 }
